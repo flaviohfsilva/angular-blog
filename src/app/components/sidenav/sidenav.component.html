@@ -1,0 +1,112 @@
+<header>
+  <a class="btn-side-out" *ngIf="!showSidenav">
+    <i class="fa-solid fa-bars" (click)="toggleSidenav()"></i>
+  </a>
+
+  <aside class="sidebar" id="sidebar" *ngIf="showSidenav">
+    <div class="sidenav">
+
+     <div class="header">
+      <h1>Menu</h1>
+
+      <a class="btn-side">
+        <i class="fa-solid fa-bars" (click)="toggleSidenav()"></i>
+      </a>
+
+     </div>
+
+     <input type="text" class="search" placeholder="Search" [(ngModel)]="searchText"  (keydown.enter)="search()" (input)="searchChange()">
+     <a class="btn-search">
+      <i class="fa-solid fa-magnifying-glass" (click)="search()"></i>
+     </a>
+
+      <!-- ------- TASK SECTION -------- -->
+      <div class="list-section">
+
+        <h3 class="header-section">Task</h3>
+
+        <ul class="task-list">
+
+          <li class="task-itens" routerLinkActive="active">
+            <a class="btn-itens" routerLink="/home">
+              <i class="fa-solid fa-list-check"></i>
+              <span class="itens-subtitle">Today</span>
+            </a>
+          </li>
+
+          <li class="task-itens" routerLinkActive="active">
+            <a class="btn-itens" routerLink="/page/calendar" >
+              <i class="fa-regular fa-calendar-days"></i>
+              <span class="itens-subtitle">Calendar</span>
+            </a>
+          </li>
+
+          <li class="task-itens" routerLinkActive="active">
+            <a class="btn-itens" routerLink="/page/stick-wall">
+              <i class="fa-solid fa-note-sticky"></i>
+              <span class="itens-subtitle">Stick Wall</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
+      <hr class="bar-separation">
+
+      <!-- ------- LIST SECTION -------- -->
+      <div class="list-section">
+
+        <h3 class="header-section">List</h3>
+
+        <ul>
+          <li class="list-itens">
+            <a href="#" class="btn-newList">
+              <i class="fa-solid fa-plus"></i>
+              Add New List
+            </a>
+
+          </li>
+          <li class="list-itens"></li>
+        </ul>
+
+      </div>
+
+      <hr class="bar-separation">
+
+      <!-- ------- TAG SECTION -------- -->
+      <div class="list-section">
+
+        <h3 class="header-section">Tags</h3>
+
+        <ul>
+          <li class="tag-itens">
+
+            <a href="#" class="btn-newTag">
+              <i class="fa-solid fa-plus"></i>
+              Add Tag
+            </a>
+          </li>
+
+          <li class="tag-itens"></li>
+        </ul>
+      </div>
+
+      <!-- ------- FOOTER SIDENAV -------- -->
+      <div class="footer-sidenav">
+        <a class="settings">
+          <i class="fa-solid fa-sliders"></i>
+          <span class="item-footer">Settings</span>
+        </a>
+
+        <a class="sair">
+          <i class="fa-solid fa-sign-out"></i>
+          <span class="item-footer">Sign out</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+</header>
+
+
+

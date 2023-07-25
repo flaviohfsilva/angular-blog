@@ -1,0 +1,12 @@
+main{
+  display: flex;
+  margin: 3% 0 0 3%;
+}
+.header{
+  color: var(--color-neutral-40);
+  font-size: 35px;
+  font-weight: bold;
+  margin: 2% 0 0 3%;
+}
+
+

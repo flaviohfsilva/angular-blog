@@ -1,0 +1,35 @@
+<!-- .input-field.shifted {
+  margin-left: 270px; /* Distância para a direita quando a sidebar está visível */
+  /* Outros estilos... */
+}
+[class.shifted]="sidebarVisible" -->
+<main>
+  <app-sidenav (searchChanged)="filterText($event)"></app-sidenav>
+
+  <section class="today-screen" id="today-screen">
+    <div class="today-container">
+
+      <h1 class="header">Today</h1>
+
+      <input class="text-area" type="text"  (keydown.enter)="newTask(adcTask.value); adcTask.value=''"  placeholder="+ Add new task" #adcTask>
+
+      <ul>
+        <li class="type-text" *ngFor="let listTask of filterTasks">
+          <div class="task">
+            <input type="checkbox">
+            <span>{{listTask}}</span>
+          </div>
+
+          <a href="#" class="btn-edit">
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+
+
+
+
