@@ -11,16 +11,16 @@ export class SidenavComponent {
 
   showSidenav: boolean = true;
   searchText: string = '';
-  estaNaRotaStick!: boolean;
-  estaNaRotaCalendar!: boolean;
+  // estaNaRotaStick!: boolean;
+  // estaNaRotaCalendar!: boolean;
 
 
   constructor(private router: Router){
 
-    router.events.subscribe((val) => {
-      this.estaNaRotaCalendar = router.url.includes('calendar'),
-      this.estaNaRotaStick = router.url.includes('stick-wall')
-    })
+    // router.events.subscribe((val) => {
+    //   this.estaNaRotaCalendar = router.url.includes('calendar'),
+    //   this.estaNaRotaStick = router.url.includes('stick-wall')
+    // })
 
   }
 
