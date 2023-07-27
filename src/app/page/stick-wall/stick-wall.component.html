@@ -8,37 +8,49 @@
 
       <ul class="sticky-menu">
 
-        <li class="sticky-cards" style="background: rgb(253, 242, 179);">
-          <div class="sticky-content">
-            <p class="sticky-title">Social Media</p>
-            <span class="sticky-description"> - Fazer artes para o aniversario da página - Fazer interações nos stories </span>
-          </div>
-        </li>
+        <ul *ngFor="let card of cards">
+          <li class="sticky-cards"  [style.background]="card.color">
+            <div class="sticky-content">
+              <p class="sticky-title">{{card.title}}</p>
+              <span class="sticky-description"> {{card.description}} </span>
+            </div>
+          </li>
+        </ul>
 
-        <li class="sticky-cards" style="background: rgb(253, 242, 179);">
-          <div class="sticky-content">
-            <p class="sticky-title">Social Media</p>
-            <span class="sticky-description"> Would need time to get insights (goals, personals, budget, audits), but after, it would be good to focus on assembling my team (start with SEO specialist, then perhaps an email marketer?). Also need to brainstorm on tooling. </span>
-          </div>
-        </li>
-
-        <li class="sticky-cards" style="background: rgb(253, 242, 179);">
-          <div class="sticky-content">
-            <p class="sticky-title">Social Media</p>
-            <span class="sticky-description"> - Fazer artes para o aniversario da <br> página - Fazer interações nos stories </span>
-          </div>
-        </li>
-
-       
-        <li class="sticky-cards" style="font-size: 40px; cursor: pointer; align-items: center; filter: none;" >
+        <li class="sticky-cards" (click)="mostrarModal()" style="font-size: 40px; cursor: pointer; align-items: center; filter: none;" >
           <a> <i class="fa-solid fa-plus"></i> </a>
         </li>
-
       </ul>
     </div>
+
+    <ng-container  *ngIf="modal">
+      <div class="modal" #colorCards.color>
+
+        <form action="" (ngSubmit)="submit()" [formGroup]="cardForm">
+
+          <input type="text" class="form-control" [(ngModel)]="titles" #title formControlName="titulo" placeholder="Add a title" required>
+
+          <textarea name="" id="" cols="20" rows="5" class="form-control" [(ngModel)]="descriptions" #description  formControlName="descricao" placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+
+        </form>
+
+        <div class="color-cards" #colorCards>
+          <div class="circle" (click)="addColor('rgb(253, 242, 179)')" [ngStyle]="{'background': 'rgb(253, 242, 179)'}"></div>
+          <div class="circle" (click)="addColor('rgb(255, 218, 218)')" [ngStyle]="{'background': 'rgb(255, 218, 218)'}"></div>
+          <div class="circle" (click)="addColor('rgb(255, 212, 169)')" [ngStyle]="{'background': 'rgb(255, 212, 169)'}"></div>
+          <div class="circle" (click)="addColor('rgb(209, 234, 237)')" [ngStyle]="{'background': 'rgb(209, 234, 237)'}"></div>
+          <div class="circle" (click)="addColor('#D5D96C')" [ngStyle]="{'background': '#D5D96C'}"></div>
+          <div class="circle" (click)="addColor('#BF9BBD')" [ngStyle]="{'background': '#BF9BBD'}"></div>
+        </div>
+
+        <div class="buttons">
+          <a class="btn-close" (click)="mostrarModal()"> <i class="fa-solid fa-xmark"></i> Close</a>
+          <a class="btn-done" (click)="createCard()"> <i class="fa-solid fa-check"></i> Create</a>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </ng-container>
   </section>
-
-
 </main>
 
 

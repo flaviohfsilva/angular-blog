@@ -7,10 +7,12 @@ main{
 }
 
 .header{
-  color: var(--color-neutral-40);
+  border-bottom: 3px solid var(--color-neutral-30);
+  color: var(--color-neutral);
   font-size: 35px;
   font-weight: bold;
   margin: 2% 0 0 3%;
+  width: 9%;
 }
 
 .text-area{

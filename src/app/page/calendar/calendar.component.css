@@ -3,10 +3,12 @@ main{
   margin: 3% 0 0 3%;
 }
 .header{
-  color: var(--color-neutral-40);
+  /* border: 3px solid var(--color-neutral-30); */
+  color: var(--color-neutral);
   font-size: 35px;
   font-weight: bold;
   margin: 2% 0 0 3%;
+  /* width: 10%; */
 }
 
 
