@@ -1,0 +1,38 @@
+<header>
+  <aside class="sidebar" id="sidebar" *ngIf="showEdit">
+    <div class="sidenav">
+
+      <div class="header">
+        <h1>Task</h1>
+
+        <a href="#" class="closeEdit" (click)="toggleEdit()">
+          <i class="fa-solid fa-xmark"></i>
+        </a>
+      </div>
+
+      <!-- ----------------- CONTENT TASK AREA --------------- -->
+
+      <div class="info-task">
+
+        <label for="">Title</label>
+        <input type="text">
+
+        <label for="">Description</label>
+        <input type="text">
+      </div>
+
+
+
+      <div class="buttons">
+        <a href="#" class="btn-delete">Delete task</a>
+        <a href="#" class="btn-update"> Save changes</a>
+      </div>
+
+
+    </div>
+  </aside>
+
+</header>
+
+
+

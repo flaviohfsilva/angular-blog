@@ -51,6 +51,10 @@ main{
   width: 1038px;
 }
 
+
+.task-checked {
+  text-decoration: line-through;
+}
 .btn-edit{
   color: var(--color-neutral-20);
 }

@@ -1,5 +1,8 @@
 
 import { Component, Input} from '@angular/core';
+import { PageService } from '../page.service';
+import { Task } from '../shared.interface';
+
 
 @Component({
   selector: 'app-home',
@@ -8,20 +11,81 @@ import { Component, Input} from '@angular/core';
 })
 export class HomeComponent {
 
-  tasks: String[] = [];
-  filterTasks: String[] = this.tasks;
-
+  tasks: Task[] = [];
+  filterTasks: Task[] = this.tasks;
+  taskCheck: boolean = false;
+  inputText: string = '';
   searchText: string = '';
+  selectedTask: Task | null = null;
 
-  ngOnInit(){}
+  constructor(private pageService: PageService) {}
 
-  newTask(valor: any){
-    if(valor.trim() != ''){
-      this.tasks.push(valor);
+  ngOnInit(){
+    this.iniciarTasks();
+  }
+
+
+  iniciarTasks() {
+    this.pageService.getTask().subscribe(
+      (tasks) => {
+        this.tasks = tasks;
+        this.filterText(this.searchText);
+      },
+      (error) => {
+        console.log('Tarefa não foi adicionada', error);
+      }
+    );
+  }
+
+  newTask(){
+    const newValue = this.inputText.trim();
+
+    if(newValue.trim() != ''){
+      const newTasks: Task = {
+        id: 0,
+        title: newValue,
+        completo: false
+      }
+
+      this.pageService.addTask(newTasks).subscribe(
+        (response) => {
+          this.tasks.push(response);
+          this.inputText = '';
+          this.filterText(this.searchText);
+        },
+        (error) => {
+          console.error("Tarefa não foi adicionada", error);
+        }
+      )
     }
   }
 
+  
+
+  apagarTask(){
+
+    const apagarTask: Task = {
+      id: this.selectedTask!.id,
+      title: this.inputText,
+      completo: false
+    };
+
+    this.pageService.deleteTask(apagarTask).subscribe(
+      (response)=>{
+        const index = this.tasks.findIndex(task => task.id === this.selectedTask!.id)
+
+        if(index !== -1){
+          this.tasks.splice(index, 1);
+        }
+        console.log("Tarefa apagada");
+      },
+      (error)=>{
+        console.log("Tarefa não foi apagada", error)
+      }
+    )
+  }
+
   filterText(searchText: string){
-    this.filterTasks = this.tasks.filter(item => item.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()));
+    this.filterTasks = this.tasks.filter(item => item.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()));
   }
 }

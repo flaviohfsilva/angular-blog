@@ -1,8 +1,3 @@
-<!-- .input-field.shifted {
-  margin-left: 270px; /* Distância para a direita quando a sidebar está visível */
-  /* Outros estilos... */
-}
-[class.shifted]="sidebarVisible" -->
 <main>
   <app-sidenav (searchChanged)="filterText($event)"></app-sidenav>
 
@@ -11,13 +6,13 @@
 
       <h1 class="header">Today</h1>
 
-      <input class="text-area" type="text"  (keydown.enter)="newTask(adcTask.value); adcTask.value=''"  placeholder="+ Add new task" #adcTask>
+      <input class="text-area" type="text"  [(ngModel)]="inputText" (keydown.enter)="newTask();"  placeholder="+ Add new task" #adcTask>
 
       <ul>
         <li class="type-text" *ngFor="let listTask of filterTasks">
           <div class="task">
-            <input type="checkbox">
-            <span>{{listTask}}</span>
+            <input type="checkbox" [(ngModel)]="listTask.completo">
+            <span [ngClass]="{'task-checked': listTask.completo}">{{listTask.title}}</span>
           </div>
 
           <a href="#" class="btn-edit">
@@ -27,6 +22,8 @@
       </ul>
     </div>
   </section>
+
+  <!-- <app-edit-takes></app-edit-takes> -->
 </main>
 
 

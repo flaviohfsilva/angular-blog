@@ -10,47 +10,107 @@
 
         <ul *ngFor="let card of cards">
           <li class="sticky-cards"  [style.background]="card.color">
-            <div class="sticky-content">
-              <p class="sticky-title">{{card.title}}</p>
-              <span class="sticky-description"> {{card.description}} </span>
-            </div>
+            <a (click)="atualizarCard(card)">
+              <div class="sticky-content">
+                <p class="sticky-title">{{card.title}}</p>
+                <span class="sticky-description"> {{card.content}} </span>
+              </div>
+            </a>
           </li>
         </ul>
 
-        <li class="sticky-cards" (click)="mostrarModal()" style="font-size: 40px; cursor: pointer; align-items: center; filter: none;" >
+        <li class="sticky-cards" (click)="mostrarModal()" style="font-size: 40px; align-items: center; filter: none;" >
           <a> <i class="fa-solid fa-plus"></i> </a>
         </li>
       </ul>
     </div>
 
-    <ng-container  *ngIf="modal">
+    <!-- -------------- CRIAR CARD --------- -->
+    <ng-container  *ngIf="modal && !cardEditado">
       <div class="modal" #colorCards.color>
 
         <form action="" (ngSubmit)="submit()" [formGroup]="cardForm">
 
-          <input type="text" class="form-control" [(ngModel)]="titles" #title formControlName="titulo" placeholder="Add a title" required>
+          <div class="input-field">
 
-          <textarea name="" id="" cols="20" rows="5" class="form-control" [(ngModel)]="descriptions" #description  formControlName="descricao" placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+            <label for="">Title</label>
+            <input type="text" class="form-control" #title formControlName="titulo" placeholder="Add a title" required>
+
+            <label for="">Description</label>
+            <textarea name="" id="" cols="20" rows="5" class="form-control"  #description  formControlName="descricao" placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+          </div>
+
+          <div class="color-cards" #colorCards>
+            <div class="circle" (click)="addColor('rgb(253, 242, 179)')" [ngStyle]="{'background': 'rgb(253, 242, 179)'}"></div>
+            <div class="circle" (click)="addColor('rgb(255, 218, 218)')" [ngStyle]="{'background': 'rgb(255, 218, 218)'}"></div>
+            <div class="circle" (click)="addColor('rgb(255, 212, 169)')" [ngStyle]="{'background': 'rgb(255, 212, 169)'}"></div>
+            <div class="circle" (click)="addColor('rgb(209, 234, 237)')" [ngStyle]="{'background': 'rgb(209, 234, 237)'}"></div>
+            <div class="circle" (click)="addColor('#D5D96C')" [ngStyle]="{'background': '#D5D96C'}"></div>
+            <div class="circle" (click)="addColor('#BF9BBD')" [ngStyle]="{'background': '#BF9BBD'}"></div>
+          </div>
+
+          <div class="buttons">
+
+            <a class="btn-close" (click)="mostrarModal()"> <i class="fa-solid fa-xmark"></i> Close</a>
+            <a class="btn-done" (click)="createCard()"> <i class="fa-solid fa-check"></i> Create</a>
+          </div>
 
         </form>
-
-        <div class="color-cards" #colorCards>
-          <div class="circle" (click)="addColor('rgb(253, 242, 179)')" [ngStyle]="{'background': 'rgb(253, 242, 179)'}"></div>
-          <div class="circle" (click)="addColor('rgb(255, 218, 218)')" [ngStyle]="{'background': 'rgb(255, 218, 218)'}"></div>
-          <div class="circle" (click)="addColor('rgb(255, 212, 169)')" [ngStyle]="{'background': 'rgb(255, 212, 169)'}"></div>
-          <div class="circle" (click)="addColor('rgb(209, 234, 237)')" [ngStyle]="{'background': 'rgb(209, 234, 237)'}"></div>
-          <div class="circle" (click)="addColor('#D5D96C')" [ngStyle]="{'background': '#D5D96C'}"></div>
-          <div class="circle" (click)="addColor('#BF9BBD')" [ngStyle]="{'background': '#BF9BBD'}"></div>
-        </div>
-
-        <div class="buttons">
-          <a class="btn-close" (click)="mostrarModal()"> <i class="fa-solid fa-xmark"></i> Close</a>
-          <a class="btn-done" (click)="createCard()"> <i class="fa-solid fa-check"></i> Create</a>
-        </div>
       </div>
       <div class="overlay"></div>
     </ng-container>
+
+
+    <!-- ----------- ATUALIZAR CARD ---------------- -->
+
+    <ng-container *ngIf="modal && cardEditado">
+
+      <div class="modal" *ngIf="selectedCard" #colorCards.color>
+        <a class="btn-close-modal" (click)="mostrarModal()"><i class="fa-solid fa-xmark"></i></a>
+
+        <form (ngSubmit)="enviarAtualizacaoCard()" [formGroup]="cardForm">
+          <div class="input-field">
+            <label for="">Title</label>
+            <input type="text" class="form-control" formControlName="titulo" [(ngModel)]="titles" placeholder="Add a title" required>
+
+            <label for="">Description</label>
+            <textarea class="form-control" cols="20" rows="5" formControlName="descricao" [(ngModel)]="descriptions" placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+          </div>
+
+          <div class="color-cards" #colorCards>
+            <div class="circle" (click)="addColor('rgb(253, 242, 179)')" [ngStyle]="{'background': 'rgb(253, 242, 179)'}"></div>
+            <div class="circle" (click)="addColor('rgb(255, 218, 218)')" [ngStyle]="{'background': 'rgb(255, 218, 218)'}"></div>
+            <div class="circle" (click)="addColor('rgb(255, 212, 169)')" [ngStyle]="{'background': 'rgb(255, 212, 169)'}"></div>
+            <div class="circle" (click)="addColor('rgb(209, 234, 237)')" [ngStyle]="{'background': 'rgb(209, 234, 237)'}"></div>
+            <div class="circle" (click)="addColor('#D5D96C')" [ngStyle]="{'background': '#D5D96C'}"></div>
+            <div class="circle" (click)="addColor('#BF9BBD')" [ngStyle]="{'background': '#BF9BBD'}"></div>
+          </div>
+
+          <div class="buttons" style="justify-content: space-evenly;">
+            <a class="btn-close" (click)="mostrarModalDelete()"> <i class="fa-solid fa-xmark"></i> Delete card</a>
+            <a class="btn-done" (click)="enviarAtualizacaoCard()"> <i class="fa-solid fa-check"></i> Save changes</a>
+          </div>
+        </form>
+      </div>
+      <div class="overlay"></div>
+    </ng-container>
+
   </section>
 </main>
+
+<ng-container *ngIf="modalDelete">
+
+  <div class="modalDelete">
+
+    <h2 class="alert-message">Delete this card?</h2>
+    <p style="color: var(--color-var-20); text-align: center;"> Before deleting, make sure you <br> actually want to delete it.</p>
+
+    <div class="buttons">
+      <a class="btn-close" (click)="mostrarModalDelete()"> <i class="fa-solid fa-xmark"></i> No</a>
+      <a class="btn-done" (click)="apagarCard()"> <i class="fa-solid fa-check"></i> Yes</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</ng-container>
 
 

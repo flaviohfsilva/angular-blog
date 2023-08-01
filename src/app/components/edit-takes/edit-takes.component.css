@@ -1,0 +1,26 @@
+
+.sidebar{
+  margin: 5% 0 0 2%;
+}
+
+.sidenav{
+  background: var(--color-neutral-10);
+  border-radius: 15px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+
+  width: 250px;
+}
+
+.buttons{
+
+}
+
+.btn-delete{
+
+}
+
+.btn-update{
+
+}

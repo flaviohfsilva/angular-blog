@@ -1,0 +1,64 @@
+{
+  "task": [
+    {
+      "id": 0,
+      "title": "",
+      "completo": false
+    },
+    {
+      "id": 1,
+      "title": "oi",
+      "completo": false
+    },
+    {
+      "id": 2,
+      "title": "limpar a casa",
+      "completo": false
+    },
+    {
+      "id": 3,
+      "title": "Limpar o quarto",
+      "completo": false
+    },
+    {
+      "id": 4,
+      "title": "limpar o quarto",
+      "completo": false
+    },
+    {
+      "id": 5,
+      "title": "Limpar a casa",
+      "completo": false
+    },
+    {
+      "id": 6,
+      "title": "oi",
+      "completo": false
+    },
+    {
+      "id": 7,
+      "title": "hgasd",
+      "completo": false
+    }
+  ],
+  "tags": [
+    {
+      "id": 0,
+      "name": ""
+    }
+  ],
+  "stickyCards": [
+    {
+      "id": 0,
+      "title": "",
+      "content": "",
+      "color:": ""
+    },
+    {
+      "id": 2,
+      "title": "Limpar o quarto",
+      "content": "- Varrer o quarto - Limpar prateleiras - Limpar os livros - Organizar as roupas  ",
+      "color": "rgb(253, 242, 179)"
+    }
+  ]
+}
