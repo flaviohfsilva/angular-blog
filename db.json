@@ -6,11 +6,6 @@
       "completo": false
     },
     {
-      "id": 2,
-      "title": "limpar a casa",
-      "completo": false
-    },
-    {
       "id": 3,
       "title": "Limpar o quarto",
       "completo": false
@@ -58,7 +53,7 @@
       "id": 2,
       "title": "Limpar o quarto",
       "content": "- Varrer o quarto - Limpar prateleiras - Limpar os livros - Organizar as roupas  ",
-      "color": "rgb(253, 242, 179)"
+      "color": "rgb(209, 234, 237)"
     }
   ]
 }

@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Component, Input} from '@angular/core';
 import { PageService } from '../page.service';
@@ -19,10 +20,15 @@ export class HomeComponent {
   selectedTask: Task | null = null;
   modal: boolean = false;
   taskEditada: boolean = false;
+  homeForm!: FormGroup
 
-  constructor(private pageService: PageService) {}
+  constructor(private pageService: PageService, private formBuilder: FormBuilder) {}
 
   ngOnInit(){
+    this.homeForm = this.formBuilder.group({
+      titulo: ['', Validators.required],
+      descricao: ['', Validators.required]
+    })
     this.iniciarTasks();
   }
 
@@ -65,7 +71,7 @@ export class HomeComponent {
   atualizarTask(task: Task){
     this.selectedTask = task;
     this.taskEditada = true;
-    
+
     this.showModal();
     this.inputText = task.title
   }

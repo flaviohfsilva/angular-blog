@@ -55,6 +55,7 @@ export class StickWallComponent {
         this.cards.push(response);
         this.cardForm.reset();
         this.mostrarModal();
+        console.log("Sticky Card adicionado");
       },
       (error)=>{
         console.log("Stikcy Card não foi adicionado", error);
