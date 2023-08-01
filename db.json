@@ -6,11 +6,6 @@
       "completo": false
     },
     {
-      "id": 1,
-      "title": "oi",
-      "completo": false
-    },
-    {
       "id": 2,
       "title": "limpar a casa",
       "completo": false
@@ -38,6 +33,11 @@
     {
       "id": 7,
       "title": "hgasd",
+      "completo": false
+    },
+    {
+      "id": 8,
+      "title": "dsasd",
       "completo": false
     }
   ],

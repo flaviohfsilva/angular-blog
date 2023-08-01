@@ -8,6 +8,7 @@ import { StickWallComponent } from './stick-wall/stick-wall.component';
 import { PageRoutingModule } from './page-routing-module';
 import { HomeComponent } from './home/home.component';
 import { SidenavModule } from '../components/sidenav/sidenav.module';
+import { EditTakesModule } from '../components/edit-takes/edit-takes.module';
 
 
 
@@ -24,6 +25,7 @@ import { SidenavModule } from '../components/sidenav/sidenav.module';
     ReactiveFormsModule,
     PageRoutingModule,
     SidenavModule,
+    EditTakesModule
   ]
 })
 export class PageModule { }

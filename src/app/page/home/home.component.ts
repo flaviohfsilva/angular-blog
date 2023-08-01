@@ -17,6 +17,8 @@ export class HomeComponent {
   inputText: string = '';
   searchText: string = '';
   selectedTask: Task | null = null;
+  modal: boolean = false;
+  taskEditada: boolean = false;
 
   constructor(private pageService: PageService) {}
 
@@ -60,7 +62,42 @@ export class HomeComponent {
     }
   }
 
-  
+  atualizarTask(task: Task){
+    this.selectedTask = task;
+    this.taskEditada = true;
+    
+    this.showModal();
+    this.inputText = task.title
+  }
+
+  enviarTaskAtualizada(){
+
+    if(!this.selectedTask){
+      console.log("Nenhuma task selecionada para atualizar");
+      return;
+    }
+
+    const upTask: Task ={
+      id: this.selectedTask.id,
+      title: this.selectedTask.title,
+      completo: this.selectedTask.completo
+    }
+
+    this.pageService.updateTask(upTask).subscribe(
+      (response)=> {
+        const index = this.tasks.findIndex(task => task.id === this.selectedTask!.id);
+
+        if(index !== -1){
+          this.tasks[index] = upTask;
+        }
+        console.log("Tarefa atualizada");
+      },
+      (error)=>{
+        console.log("Erro ao atualizar a tarefa", error)
+      }
+    )
+  }
+
 
   apagarTask(){
 
@@ -87,5 +124,9 @@ export class HomeComponent {
 
   filterText(searchText: string){
     this.filterTasks = this.tasks.filter(item => item.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()));
+  }
+
+  showModal(){
+    this.modal = !this.modal;
   }
 }

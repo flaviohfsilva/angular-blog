@@ -1,11 +1,11 @@
 <header>
-  <aside class="sidebar" id="sidebar" *ngIf="showEdit">
+  <aside class="sidebar" id="sidebar" *ngIf="!showEdit">
     <div class="sidenav">
 
       <div class="header">
         <h1>Task</h1>
 
-        <a href="#" class="closeEdit" (click)="toggleEdit()">
+        <a class="closeEdit" (click)="toggleEdit()">
           <i class="fa-solid fa-xmark"></i>
         </a>
       </div>
@@ -14,19 +14,32 @@
 
       <div class="info-task">
 
-        <label for="">Title</label>
-        <input type="text">
+        <form action="">
+          <div class="input-field">
+            <label for="">Title</label>
+            <input type="text">
 
-        <label for="">Description</label>
-        <input type="text">
+            <label for="">Description</label>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </div>
+
+        </form>
+
+
+        <section class="tags">
+          <h3 class="header-section">Tags</h3>
+        </section>
+
+
+
+        <div class="buttons">
+          <a href="#" class="btn-delete">Delete task</a>
+          <a href="#" class="btn-update"> Save changes</a>
+        </div>
+
+
       </div>
 
-
-
-      <div class="buttons">
-        <a href="#" class="btn-delete">Delete task</a>
-        <a href="#" class="btn-update"> Save changes</a>
-      </div>
 
 
     </div>

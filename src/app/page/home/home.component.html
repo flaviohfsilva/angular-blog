@@ -15,7 +15,7 @@
             <span [ngClass]="{'task-checked': listTask.completo}">{{listTask.title}}</span>
           </div>
 
-          <a href="#" class="btn-edit">
+          <a (click)="atualizarTask(listTask)" class="btn-edit">
             <i class="fa-solid fa-chevron-right"></i>
           </a>
         </li>
@@ -23,7 +23,32 @@
     </div>
   </section>
 
-  <!-- <app-edit-takes></app-edit-takes> -->
+  <ng-container *ngIf="modal && taskEditada">
+
+    <div class="modal" *ngIf="selectedTask" #colorCards.color>
+      <div class="header-box">
+        <h1 class="header-edit">Task</h1>
+        <a class="btn-close-modal" (click)="showModal()" style="cursor: pointer;"><i class="fa-solid fa-xmark"></i></a>
+      </div>
+
+      <form >
+        <div class="input-field">
+          <label for="">Title</label>
+          <input type="text" class="form-control" formControlName="titulo"  placeholder="Add a title" required>
+
+          <label for="">Description</label>
+          <textarea class="form-control" cols="20" rows="5" formControlName="descricao"  placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+        </div>
+
+
+        <div class="buttons" style="justify-content: space-evenly;">
+          <a class="btn-delete" (click)="apagarTask()">Delete task</a>
+          <a class="btn-update" (click)="enviarTaskAtualizada()">Save changes</a>
+        </div>
+      </form>
+    </div>
+    <div class="overlay"></div>
+  </ng-container>
 </main>
 
 

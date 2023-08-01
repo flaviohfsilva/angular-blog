@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SearchTaskPipe } from '../search-task.pipe';
 import { SidenavModule } from './sidenav/sidenav.module';
-import { EditTakesComponent } from './edit-takes/edit-takes.component';
+import { EditTakesModule } from './edit-takes/edit-takes.module';
 
 
 
@@ -22,7 +22,6 @@ import { EditTakesComponent } from './edit-takes/edit-takes.component';
 @NgModule({
   declarations: [
     SearchTaskPipe,
-    EditTakesComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +37,7 @@ import { EditTakesComponent } from './edit-takes/edit-takes.component';
   ],
   exports: [
     SidenavModule,
+    EditTakesModule,
   ]
 })
 export class ComponentsModule { }

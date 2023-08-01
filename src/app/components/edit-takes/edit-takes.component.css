@@ -9,18 +9,49 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-
   width: 250px;
 }
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 5%;
+  padding: 5% 0 0 0;
+}
+
+.header h1{
+  color: var(--color-neutral-20);
+  font-weight: 600;
+}
+
+
+.closeEdit{
+  cursor: pointer;
+  color: var(--color-neutral-30);
+  font-size: 15px;
+  margin: 2% 8% 0 0;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-field label{
+  color: var(--color-neutral-20);
+  display: flex;
+  font-weight: 550;
+}
+
 
 .buttons{
 
 }
 
-.btn-delete{
 
-}
-
-.btn-update{
-
-}
