@@ -6,13 +6,17 @@
 
       <h1 class="header">Today</h1>
 
-      <input class="text-area" type="text"  [(ngModel)]="inputText" (keydown.enter)="newTask();"  placeholder="+ Add new task" #adcTask>
+      <input class="text-area" type="text" [(ngModel)]="inputText" (keydown.enter)="newTask();"  placeholder="+ Add new task" #adcTask>
 
       <ul>
         <li class="type-text" *ngFor="let listTask of filterTasks">
           <div class="task">
             <input type="checkbox" [(ngModel)]="listTask.completo">
-            <span [ngClass]="{'task-checked': listTask.completo}">{{listTask.title}}</span>
+            <span [ngClass]="{'task-checked': listTask.completo}" class="title-task">{{listTask.title}}</span>
+
+            <!-- <div class="data-area">
+              <i class="fa-regular fa-calendar calendar-icon"></i>
+            </div> -->
           </div>
 
           <a (click)="atualizarTask(listTask)" class="btn-edit">
@@ -23,33 +27,57 @@
     </div>
   </section>
 
+  <!-- ============= MODAL ATUALIZAR ================== -->
   <ng-container *ngIf="modal && taskEditada">
 
     <div class="modal" *ngIf="selectedTask" #colorCards.color>
       <div class="header-box">
-        <h1 class="header-edit">Task</h1>
         <a class="btn-close-modal" (click)="showModal()" style="cursor: pointer;"><i class="fa-solid fa-xmark"></i></a>
       </div>
 
-      <form >
+      <form (ngSubmit)="enviarTaskAtualizada()" [formGroup]="homeForm">
         <div class="input-field">
           <label for="">Title</label>
-          <input type="text" class="form-control" formControlName="titulo"  placeholder="Add a title" required>
+          <input type="text" class="form-control" formControlName="titulo"  [(ngModel)]="selectedTitle"  placeholder="Add a title" required>
 
           <label for="">Description</label>
           <textarea class="form-control" cols="20" rows="5" formControlName="descricao"  placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+
+
+          <div class="date-area">
+            <p class="title">Due date</p>
+            <input class="data" type="date" style="background: none;">
+          </div>
+
         </div>
 
 
         <div class="buttons" style="justify-content: space-evenly;">
-          <a class="btn-delete" (click)="apagarTask()">Delete task</a>
-          <a class="btn-update" (click)="enviarTaskAtualizada()">Save changes</a>
+          <a class="btn-delete" (click)="showModalDelete()"> <i class="fa-solid fa-xmark"></i> Delete task</a>
+          <a class="btn-update" (click)="enviarTaskAtualizada()"> <i class="fa-solid fa-check"></i> Save changes</a>
         </div>
       </form>
     </div>
     <div class="overlay"></div>
   </ng-container>
 </main>
+
+<!-- ============= MODAL DELETAR - POP UP ================== -->
+<ng-container *ngIf="modalDelete">
+
+  <div class="modalDelete">
+
+    <h2 class="alert-message">Delete this task?</h2>
+    <p style="color: var(--color-var-20); text-align: center;"> Before deleting, make sure you <br> actually want to delete it.</p>
+
+    <div class="buttons">
+      <a class="btn-delete" (click)="showModalDelete()"> <i class="fa-solid fa-xmark"></i> No</a>
+      <a class="btn-update" (click)="apagarTask()"> <i class="fa-solid fa-check"></i> Yes</a>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</ng-container>
+
 
 
 

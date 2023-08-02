@@ -11,6 +11,7 @@ import { PageModule } from './page/page.module';
 
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -24,6 +25,7 @@ import { PageModule } from './page/page.module';
         HttpClientModule,
         BrowserAnimationsModule,
         PageModule
+
     ]
 })
 export class AppModule { }

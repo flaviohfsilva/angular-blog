@@ -18,9 +18,11 @@ export class HomeComponent {
   inputText: string = '';
   searchText: string = '';
   selectedTask: Task | null = null;
+  selectedTitle: string = '';
   modal: boolean = false;
+  modalDelete: boolean = false;
   taskEditada: boolean = false;
-  homeForm!: FormGroup
+  homeForm!: FormGroup;
 
   constructor(private pageService: PageService, private formBuilder: FormBuilder) {}
 
@@ -38,6 +40,7 @@ export class HomeComponent {
       (tasks) => {
         this.tasks = tasks;
         this.filterText(this.searchText);
+        console.log("As tarefas estão sendo mostrdas")
       },
       (error) => {
         console.log('Tarefa não foi adicionada', error);
@@ -47,6 +50,7 @@ export class HomeComponent {
 
   newTask(){
     const newValue = this.inputText.trim();
+
 
     if(newValue.trim() != ''){
       const newTasks: Task = {
@@ -58,7 +62,6 @@ export class HomeComponent {
       this.pageService.addTask(newTasks).subscribe(
         (response) => {
           this.tasks.push(response);
-          this.inputText = '';
           this.filterText(this.searchText);
         },
         (error) => {
@@ -71,9 +74,8 @@ export class HomeComponent {
   atualizarTask(task: Task){
     this.selectedTask = task;
     this.taskEditada = true;
-
+    this.selectedTitle = task.title;
     this.showModal();
-    this.inputText = task.title
   }
 
   enviarTaskAtualizada(){
@@ -83,11 +85,11 @@ export class HomeComponent {
       return;
     }
 
-    const upTask: Task ={
+    const upTask: Task = {
       id: this.selectedTask.id,
-      title: this.selectedTask.title,
+      title: this.selectedTitle,
       completo: this.selectedTask.completo
-    }
+    };
 
     this.pageService.updateTask(upTask).subscribe(
       (response)=> {
@@ -96,6 +98,8 @@ export class HomeComponent {
         if(index !== -1){
           this.tasks[index] = upTask;
         }
+
+        this.showModal()
         console.log("Tarefa atualizada");
       },
       (error)=>{
@@ -107,9 +111,13 @@ export class HomeComponent {
 
   apagarTask(){
 
+    if(!this.selectedTask){
+      return;
+    }
+
     const apagarTask: Task = {
-      id: this.selectedTask!.id,
-      title: this.inputText,
+      id: this.selectedTask.id,
+      title: this.selectedTask.title,
       completo: false
     };
 
@@ -118,14 +126,16 @@ export class HomeComponent {
         const index = this.tasks.findIndex(task => task.id === this.selectedTask!.id)
 
         if(index !== -1){
-          this.tasks.splice(index, 1);
+         this.tasks.splice(index, 1);
         }
-        console.log("Tarefa apagada");
+        console.log("Tarefa apagada com sucesso!");
       },
       (error)=>{
         console.log("Tarefa não foi apagada", error)
       }
     )
+
+    this.modalDelete = false;
   }
 
   filterText(searchText: string){
@@ -134,5 +144,10 @@ export class HomeComponent {
 
   showModal(){
     this.modal = !this.modal;
+  }
+
+  showModalDelete(){
+    this.modalDelete = !this.modalDelete
+    this.modal = false;
   }
 }

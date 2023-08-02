@@ -6,33 +6,8 @@
       "completo": false
     },
     {
-      "id": 3,
-      "title": "Limpar o quarto",
-      "completo": false
-    },
-    {
-      "id": 4,
-      "title": "limpar o quarto",
-      "completo": false
-    },
-    {
       "id": 5,
       "title": "Limpar a casa",
-      "completo": false
-    },
-    {
-      "id": 6,
-      "title": "oi",
-      "completo": false
-    },
-    {
-      "id": 7,
-      "title": "hgasd",
-      "completo": false
-    },
-    {
-      "id": 8,
-      "title": "dsasd",
       "completo": false
     }
   ],
@@ -51,9 +26,15 @@
     },
     {
       "id": 2,
-      "title": "Limpar o quarto",
+      "title": "Limpar os quartossss",
       "content": "- Varrer o quarto - Limpar prateleiras - Limpar os livros - Organizar as roupas  ",
       "color": "rgb(209, 234, 237)"
+    },
+    {
+      "id": 3,
+      "title": null,
+      "content": null,
+      "color": "rgb(255, 218, 218)"
     }
   ]
 }

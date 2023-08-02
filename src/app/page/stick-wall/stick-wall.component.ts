@@ -130,7 +130,6 @@ export class StickWallComponent {
         console.log("Não foi possível apagar esse card", error);
       }
     )
-    this.modal = false;
     this.modalDelete = false;
   }
 
