@@ -19,6 +19,7 @@ export class HomeComponent {
   searchText: string = '';
   selectedTask: Task | null = null;
   selectedTitle: string = '';
+  selectedDate: string = '';
   modal: boolean = false;
   modalDelete: boolean = false;
   taskEditada: boolean = false;
@@ -29,8 +30,9 @@ export class HomeComponent {
   ngOnInit(){
     this.homeForm = this.formBuilder.group({
       titulo: ['', Validators.required],
-      descricao: ['', Validators.required]
-    })
+      descricao: ['', Validators.required],
+      data: ['']
+    });
     this.iniciarTasks();
   }
 
@@ -40,6 +42,7 @@ export class HomeComponent {
       (tasks) => {
         this.tasks = tasks;
         this.filterText(this.searchText);
+        this.pageService.setTaskCount(this.tasks.length);
         console.log("As tarefas estão sendo mostrdas")
       },
       (error) => {
@@ -56,7 +59,8 @@ export class HomeComponent {
       const newTasks: Task = {
         id: 0,
         title: newValue,
-        completo: false
+        completo: false,
+        date: ''
       }
 
       this.pageService.addTask(newTasks).subscribe(
@@ -75,6 +79,7 @@ export class HomeComponent {
     this.selectedTask = task;
     this.taskEditada = true;
     this.selectedTitle = task.title;
+    this.selectedDate = task.date;
     this.showModal();
   }
 
@@ -88,7 +93,8 @@ export class HomeComponent {
     const upTask: Task = {
       id: this.selectedTask.id,
       title: this.selectedTitle,
-      completo: this.selectedTask.completo
+      completo: this.selectedTask.completo,
+      date: this.selectedDate
     };
 
     this.pageService.updateTask(upTask).subscribe(
@@ -99,8 +105,9 @@ export class HomeComponent {
           this.tasks[index] = upTask;
         }
 
+        this.filterTasks = this.tasks.filter(item => item.title.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()));
         this.showModal()
-        console.log("Tarefa atualizada");
+        console.log("Tarefa atualizada", response);
       },
       (error)=>{
         console.log("Erro ao atualizar a tarefa", error)
@@ -118,7 +125,8 @@ export class HomeComponent {
     const apagarTask: Task = {
       id: this.selectedTask.id,
       title: this.selectedTask.title,
-      completo: false
+      completo: false,
+      date: this.selectedDate
     };
 
     this.pageService.deleteTask(apagarTask).subscribe(
@@ -128,7 +136,10 @@ export class HomeComponent {
         if(index !== -1){
          this.tasks.splice(index, 1);
         }
-        console.log("Tarefa apagada com sucesso!");
+
+        this.filterTasks = this.tasks.filter(item => item.title.toLocaleLowerCase().includes(this.searchText.toLocaleLowerCase()));
+
+        console.log("Tarefa apagada com sucesso!", response);
       },
       (error)=>{
         console.log("Tarefa não foi apagada", error)
@@ -149,5 +160,9 @@ export class HomeComponent {
   showModalDelete(){
     this.modalDelete = !this.modalDelete
     this.modal = false;
+  }
+
+  mostrarTotalTarefas(): number{
+    return this.filterTasks.length;
   }
 }

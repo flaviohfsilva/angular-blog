@@ -6,9 +6,16 @@
       "completo": false
     },
     {
-      "id": 5,
-      "title": "Limpar a casa",
-      "completo": false
+      "id": 1,
+      "title": "Limpar a cozinha",
+      "completo": false,
+      "date": "2023-08-04"
+    },
+    {
+      "id": 2,
+      "title": "Aniversário",
+      "completo": true,
+      "date": "2023-10-02"
     }
   ],
   "tags": [
@@ -29,12 +36,6 @@
       "title": "Limpar os quartossss",
       "content": "- Varrer o quarto - Limpar prateleiras - Limpar os livros - Organizar as roupas  ",
       "color": "rgb(209, 234, 237)"
-    },
-    {
-      "id": 3,
-      "title": null,
-      "content": null,
-      "color": "rgb(255, 218, 218)"
     }
   ]
 }

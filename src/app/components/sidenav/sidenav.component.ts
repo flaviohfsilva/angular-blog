@@ -1,5 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { PageService } from './../../page/page.service';
+import { Component, Output, Input,EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Task } from 'src/app/page/shared.interface';
 
 
 @Component({
@@ -11,17 +13,19 @@ export class SidenavComponent {
 
   showSidenav: boolean = true;
   searchText: string = '';
+  taskCount$ = this.pageService.taskCount$;
+
+
   // estaNaRotaStick!: boolean;
   // estaNaRotaCalendar!: boolean;
 
 
-  constructor(private router: Router){
+  constructor(private router: Router, private pageService: PageService){
 
     // router.events.subscribe((val) => {
     //   this.estaNaRotaCalendar = router.url.includes('calendar'),
     //   this.estaNaRotaStick = router.url.includes('stick-wall')
     // })
-
   }
 
   @Output() searchChanged: EventEmitter<string> = new EventEmitter<string>();
@@ -40,4 +44,10 @@ export class SidenavComponent {
       this.searchChanged.emit('');
     }
   }
+
+  isActiveRoute(route: string): boolean {
+    return this.router.isActive(route, true);
+  }
 }
+
+

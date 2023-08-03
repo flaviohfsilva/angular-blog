@@ -95,7 +95,7 @@ export class StickWallComponent {
         }
 
         this.mostrarModal();
-        console.log("Card atualizado");
+        console.log("Card atualizado", response);
       },
       (error) => {
         console.log("Erro ao atualizar o card", error);
@@ -124,12 +124,15 @@ export class StickWallComponent {
         if(index !== -1){
           this.cards.splice(index, 1);
         }
-        console.log("Card apagado com sucesso!");
+        
+        console.log("Card apagado com sucesso!", response);
       },
       (error) => {
         console.log("Não foi possível apagar esse card", error);
       }
     )
+
+
     this.modalDelete = false;
   }
 

@@ -2,7 +2,7 @@ export interface Task {
   id: number;
   title: string;
   completo: boolean;
-  dueDate?: string;
+  date: string;
 }
 
 export interface Tag {

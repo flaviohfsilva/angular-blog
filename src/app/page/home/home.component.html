@@ -4,20 +4,39 @@
   <section class="today-screen" id="today-screen">
     <div class="today-container">
 
-      <h1 class="header">Today</h1>
+      <div class="header">
+        <h1 class="title">Today</h1>
+        <span class="badge">{{mostrarTotalTarefas()}}</span>
+      </div>
+
 
       <input class="text-area" type="text" [(ngModel)]="inputText" (keydown.enter)="newTask();"  placeholder="+ Add new task" #adcTask>
 
       <ul>
         <li class="type-text" *ngFor="let listTask of filterTasks">
           <div class="task">
-            <input type="checkbox" [(ngModel)]="listTask.completo">
-            <span [ngClass]="{'task-checked': listTask.completo}" class="title-task">{{listTask.title}}</span>
 
-            <!-- <div class="data-area">
-              <i class="fa-regular fa-calendar calendar-icon"></i>
-            </div> -->
+            <div class="title-task">
+              <input type="checkbox" [(ngModel)]="listTask.completo">
+              <span [ngClass]="{'task-checked': listTask.completo}">{{listTask.title}}</span>
+            </div>
+
+
+            <div class="sub-itens">
+              <div *ngIf="listTask.date" class="data-box">
+                <i class="fa-regular fa-calendar calendar-icon"></i>
+                <p class="date-choose">{{listTask.date}}</p>
+              </div>
+
+              <div class="tags">
+                oi
+              </div>
+
+            </div>
+
           </div>
+
+
 
           <a (click)="atualizarTask(listTask)" class="btn-edit">
             <i class="fa-solid fa-chevron-right"></i>
@@ -37,16 +56,25 @@
 
       <form (ngSubmit)="enviarTaskAtualizada()" [formGroup]="homeForm">
         <div class="input-field">
-          <label for="">Title</label>
+          <label for="">Task</label>
           <input type="text" class="form-control" formControlName="titulo"  [(ngModel)]="selectedTitle"  placeholder="Add a title" required>
 
-          <label for="">Description</label>
-          <textarea class="form-control" cols="20" rows="5" formControlName="descricao"  placeholder="Add a description" maxlength='1000' minlength='100' required></textarea>
+          <!-- <label for="">Description</label>
+          <textarea class="form-control" cols="20" rows="5" formControlName="descricao"  placeholder="Add a description" maxlength='1000' minlength='100' required></textarea> -->
 
 
           <div class="date-area">
-            <p class="title">Due date</p>
-            <input class="data" type="date" style="background: none;">
+            <p class="title-area">Due date</p>
+            <input class="data" type="date" style="background: none;" formControlName="data" [(ngModel)]="selectedDate">
+          </div>
+
+          <div class="date-area">
+            <p class="title-area">Tags</p>
+
+            <div class="buttons-tags">
+              <a href="#" class="btn-tag"> Tag 1</a>
+              <a href="#" class="btn-add"> <i class="fa-solid fa-plus"></i> Add Tag</a>
+            </div>
           </div>
 
         </div>

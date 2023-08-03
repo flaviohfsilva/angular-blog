@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable, map, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, take } from 'rxjs';
 import { Task, Tag, StickyCard} from './shared.interface';
 
 
@@ -13,10 +13,15 @@ import { Task, Tag, StickyCard} from './shared.interface';
 export class PageService {
 
   readonly API = environment.apiUrl
-  title: string = '';
+  private taskCountSubject = new BehaviorSubject<number>(0);
+  public taskCount$ = this.taskCountSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
+
+  setTaskCount(count: number) {
+    this.taskCountSubject.next(count);
+  }
 
   getTask(): Observable<Task[]> {
     return this.httpClient.get<Task[]>(`${this.API}/task`).pipe(

@@ -1,4 +1,4 @@
-/* ----------------- MAIN CONFIG ----------------- */
+/* ================== MAIN CONFIG ================== */
 main{
   display: flex;
   margin: 3% 0 5% 3%;
@@ -14,7 +14,7 @@ main{
   width: 18%;
 }
 
-/* ----------------- STICKY AREA ----------------- */
+/* ==================- STICKY AREA ================== */
 
 .sticky-container{
   margin: 2% 0 0 3%;
@@ -64,7 +64,7 @@ main{
   text-align: center;
 }
 
-/* ----------------- MODALS ----------------- */
+/* ================== MODALS ================== */
 
 .modal{
   /* align-items: center; */
@@ -118,7 +118,7 @@ main{
   z-index: 0;
 }
 
-/* ----------------- FORM MODAL ----------------- */
+/* ================== FORM MODAL ================== */
 
 .input-field{
   display: flex;
@@ -151,11 +151,11 @@ main{
   -webkit-text-fill-color: var(--color-neutral);
 }
 
-.color-cards{
+/* ================== COLORS ================== */
 
+.color-cards{
   display: flex;
   gap: .5rem;
-
 }
 
 .circle{
@@ -172,18 +172,25 @@ main{
   border: 2px solid var(--color-bg);
 }
 
+/* ================== BUTTONS MODAL ================== */
+
 .buttons{
   display: flex;
   cursor: pointer;
   gap: 50px;
   justify-content: space-between;
-  margin: 15% 0 0 0;
+  margin: 10% 0 0 0;
 }
 
 .btn-done{
   background:rgb(255, 212, 59);
   border-radius: 5px;
   padding: 8px 12px;
+  transition: .5s;
+}
+
+.btn-done:hover{
+  transform: translateY(-2px);
 }
 
 .btn-close{
@@ -193,12 +200,9 @@ main{
   padding: 8px 12px;
 }
 
-/* .btn-close:hover{
-  background:rgb(255, 212, 59);
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-} */
+.btn-close:hover{
+  border: 1px solid var(--color-bg);
+}
 
 .btn-close-modal{
   cursor: pointer;

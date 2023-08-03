@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SearchTaskPipe } from '../search-task.pipe';
 import { SidenavModule } from './sidenav/sidenav.module';
-import { EditTakesModule } from './edit-takes/edit-takes.module';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -33,11 +33,11 @@ import { EditTakesModule } from './edit-takes/edit-takes.module';
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatBadgeModule
   ],
   exports: [
     SidenavModule,
-    EditTakesModule,
   ]
 })
 export class ComponentsModule { }
